@@ -73,6 +73,7 @@ class MessagesAPI(object):
         before=None,
         beforeMessage=None,
         max=50,
+        limit=None,
         **request_parameters,
     ):
         """Lists messages in a room.
@@ -100,8 +101,12 @@ class MessagesAPI(object):
                 ISO8601 format.
             beforeMessage(str): List messages sent before a message,
                 by ID.
-            max(int): Limit the maximum number of items returned from the
-                Webex service.
+            max(int): Limit the number of items returned per API request
+                (page size). The iterator automatically fetches additional
+                pages as needed.
+            limit(int): Maximum total number of items to return. Pagination
+                stops once this count is reached. If not set, all matching
+                items are returned.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 
@@ -120,6 +125,7 @@ class MessagesAPI(object):
         check_type(before, str, optional=True)
         check_type(beforeMessage, str, optional=True)
         check_type(max, int, optional=True)
+        check_type(limit, int, optional=True)
 
         params = dict_from_items_with_values(
             request_parameters,

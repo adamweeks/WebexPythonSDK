@@ -66,6 +66,7 @@ class RoomsAPI(object):
         type=None,
         sortBy=None,
         max=100,
+        limit=None,
         **request_parameters,
     ):
         """List rooms.
@@ -91,8 +92,12 @@ class RoomsAPI(object):
             sortBy(str): Sort results by room ID (`id`), most recent
                 activity (`lastactivity`), or most recently created
                 (`created`).
-            max(int): Limit the maximum number of items returned from the
-                Webex service.
+            max(int): Limit the number of items returned per API request
+                (page size). The iterator automatically fetches additional
+                pages as needed.
+            limit(int): Maximum total number of items to return. Pagination
+                stops once this count is reached. If not set, all matching
+                items are returned.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 
@@ -109,6 +114,7 @@ class RoomsAPI(object):
         check_type(type, str, optional=True)
         check_type(sortBy, str, optional=True)
         check_type(max, int, optional=True)
+        check_type(limit, int, optional=True)
 
         params = dict_from_items_with_values(
             request_parameters,

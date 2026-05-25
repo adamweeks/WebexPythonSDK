@@ -204,10 +204,28 @@ def test_list_people_with_paging(
     additional_group_room_memberships,
     additional_moderated_group_room_memberships,
 ):
+    page_size = 1
+    pages = 3
+    num_people = pages * page_size
+    assert test_people.len() >= num_people
+
+    people = api.people.list(max=page_size)
+    people_list = list(itertools.islice(people, num_people))
+
+    assert len(people_list) == num_people
+    assert are_valid_people(people_list)
+
+
+def test_list_people_with_limit(
+    api,
+    test_people,
+    additional_group_room_memberships,
+    additional_moderated_group_room_memberships,
+):
     num_people = 3
     assert test_people.len() >= num_people
 
-    people_list = list(api.people.list(max=num_people))
+    people_list = list(api.people.list(limit=num_people))
 
     assert len(people_list) == num_people
     assert are_valid_people(people_list)

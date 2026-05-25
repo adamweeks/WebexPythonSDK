@@ -67,6 +67,7 @@ class PeopleAPI(object):
         id=None,
         orgId=None,
         max=None,
+        limit=None,
         **request_parameters,
     ):
         """List people in your organization.
@@ -98,8 +99,12 @@ class PeopleAPI(object):
             id(str): List people by ID. Accepts up to 85 person IDs
                 separated by commas.
             orgId(str): The organization ID.
-            max(int): Limit the maximum number of items returned from the
-                Webex service.
+            max(int): Limit the number of items returned per API request
+                (page size). The iterator automatically fetches additional
+                pages as needed.
+            limit(int): Maximum total number of items to return. Pagination
+                stops once this count is reached. If not set, all matching
+                items are returned.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 
@@ -117,6 +122,7 @@ class PeopleAPI(object):
         check_type(displayName, str, optional=True)
         check_type(orgId, str, optional=True)
         check_type(max, int, optional=True)
+        check_type(limit, int, optional=True)
 
         params = dict_from_items_with_values(
             request_parameters,

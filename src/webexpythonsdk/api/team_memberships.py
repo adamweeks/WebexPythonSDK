@@ -60,7 +60,7 @@ class TeamMembershipsAPI(object):
         self._object_factory = object_factory
 
     @generator_container
-    def list(self, teamId, max=100, **request_parameters):
+    def list(self, teamId, max=100, limit=None, **request_parameters):
         """List team memberships for a team, by ID.
 
         This method supports Webex's implementation of RFC5988 Web
@@ -75,8 +75,12 @@ class TeamMembershipsAPI(object):
 
         Args:
             teamId(str): List team memberships for a team, by ID.
-            max(int): Limit the maximum number of items returned from the
-                Webex service.
+            max(int): Limit the number of items returned per API request
+                (page size). The iterator automatically fetches additional
+                pages as needed.
+            limit(int): Maximum total number of items to return. Pagination
+                stops once this count is reached. If not set, all matching
+                items are returned.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 
@@ -91,6 +95,7 @@ class TeamMembershipsAPI(object):
         """
         check_type(teamId, str)
         check_type(max, int, optional=True)
+        check_type(limit, int, optional=True)
 
         params = dict_from_items_with_values(
             request_parameters,

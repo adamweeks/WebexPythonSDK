@@ -68,6 +68,7 @@ class EventsAPI(object):
         _from=None,
         to=None,
         max=None,
+        limit=None,
         **request_parameters,
     ):
         """List events.
@@ -99,8 +100,12 @@ class EventsAPI(object):
                 date and time, in ISO8601 format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).
             to(str): Limit results to events which occurred before a
                 date and time, in ISO8601 format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).
-            max(int): Limit the maximum number of items returned from the
-                Webex service.
+            max(int): Limit the number of items returned per API request
+                (page size). The iterator automatically fetches additional
+                pages as needed.
+            limit(int): Maximum total number of items to return. Pagination
+                stops once this count is reached. If not set, all matching
+                items are returned.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 
@@ -119,6 +124,7 @@ class EventsAPI(object):
         check_type(_from, str, optional=True)
         check_type(to, str, optional=True)
         check_type(max, int, optional=True)
+        check_type(limit, int, optional=True)
 
         params = dict_from_items_with_values(
             request_parameters,

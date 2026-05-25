@@ -90,8 +90,9 @@ class RecordingsAPI(object):
         container.
 
         Args:
-            max(int): Limit the maximum number of items returned from the
-                Webex service.
+            max(int): Limit the number of items returned per API request
+                (page size). The iterator automatically fetches additional
+                pages as needed.
             _from(str): List recordings which occurred after a specific
                 date and time.
             to(str): List recordings which occurred before a specific
@@ -123,6 +124,7 @@ class RecordingsAPI(object):
             ApiError: If the Webex cloud returns an error.
         """
         check_type(max, int, optional=True)
+        check_type(limit, int, optional=True)
         check_type(_from, str, optional=True)
         check_type(to, str, optional=True)
         check_type(meetingId, str, optional=True)
