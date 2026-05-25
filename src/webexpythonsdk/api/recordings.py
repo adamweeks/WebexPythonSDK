@@ -90,8 +90,8 @@ class RecordingsAPI(object):
         container.
 
         Args:
-            max(int): Limit the maximum number of items returned from the Webex
-                service per request.
+            max(int): Limit the maximum number of items returned from the
+                Webex service.
             _from(str): List recordings which occurred after a specific
                 date and time.
             to(str): List recordings which occurred before a specific

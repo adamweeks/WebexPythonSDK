@@ -94,8 +94,8 @@ class MembershipsAPI(object):
             personId(str): Limit results to a specific person, by ID.
             personEmail(str): Limit results to a specific person, by
                 email address.
-            max(int): Limit the maximum number of items returned from the Webex
-                service per request.
+            max(int): Limit the maximum number of items returned from the
+                Webex service.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 

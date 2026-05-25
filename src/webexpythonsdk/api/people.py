@@ -98,8 +98,8 @@ class PeopleAPI(object):
             id(str): List people by ID. Accepts up to 85 person IDs
                 separated by commas.
             orgId(str): The organization ID.
-            max(int): Limit the maximum number of items returned from the Webex
-                service per request.
+            max(int): Limit the maximum number of items returned from the
+                Webex service.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 

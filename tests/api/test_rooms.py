@@ -132,13 +132,10 @@ def test_list_all_rooms(list_of_rooms):
 
 
 def test_list_rooms_with_paging(api, list_of_rooms, add_rooms):
-    page_size = 1
-    pages = 3
-    num_rooms = pages * page_size
+    num_rooms = 3
     if len(list_of_rooms) < num_rooms:
         add_rooms(num_rooms - len(list_of_rooms))
-    rooms = api.rooms.list(max=page_size)
-    rooms_list = list(itertools.islice(rooms, num_rooms))
+    rooms_list = list(api.rooms.list(max=num_rooms))
     assert len(rooms_list) == num_rooms
     assert are_valid_rooms(rooms_list)
 

@@ -85,6 +85,9 @@ class GeneratorContainer(object):
 
     def __iter__(self):
         """Return a fresh iterator."""
+        max_items = self.arguments.get("max")
+        if max_items is not None:
+            return islice(self.new_generator(), max_items)
         return self.new_generator()
 
     def __getitem__(self, item):

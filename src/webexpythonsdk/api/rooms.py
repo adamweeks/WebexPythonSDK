@@ -91,8 +91,8 @@ class RoomsAPI(object):
             sortBy(str): Sort results by room ID (`id`), most recent
                 activity (`lastactivity`), or most recently created
                 (`created`).
-            max(int): Limit the maximum number of items returned from the Webex
-                service per request.
+            max(int): Limit the maximum number of items returned from the
+                Webex service.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 

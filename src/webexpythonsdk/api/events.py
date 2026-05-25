@@ -99,8 +99,8 @@ class EventsAPI(object):
                 date and time, in ISO8601 format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).
             to(str): Limit results to events which occurred before a
                 date and time, in ISO8601 format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).
-            max(int): Limit the maximum number of items returned from the Webex
-                service per request.
+            max(int): Limit the maximum number of items returned from the
+                Webex service.
             **request_parameters: Additional request parameters (provides
                 support for parameters that may be added in the future).
 
